@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Paper } from '@mui/material';
 import backgroundImage from './assets/background.jpg';
 import TimeDisplay from './composants/TimeDisplay';
-import SubText from './composants/SubText';
 import WeatherWidget from './composants/WeatherWidget';
 
 function App() {
@@ -38,10 +37,7 @@ function App() {
 
   return (
     <Paper style={paperStyles}>
-      <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
         <TimeDisplay />
-        <SubText />
-      </div>
       <WeatherWidget latitude={latitude} longitude={longitude} />
     </Paper>
   );

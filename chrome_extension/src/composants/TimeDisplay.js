@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Typography from '@mui/material/Typography';
+import TimeText from './TimeText';
 
 function Clock() {
     const [currentTime, setCurrentTime] = useState(new Date());
@@ -7,7 +8,7 @@ function Clock() {
     useEffect(() => {
         const interval = setInterval(() => {
             setCurrentTime(new Date());
-        }, 1000); // Mise à jour toutes les secondes
+        }, 1000);
 
         return () => clearInterval(interval);
     }, []);
@@ -17,15 +18,18 @@ function Clock() {
     const typographyStyles = {
         fontSize: '14rem',
         color: 'white',
-        fontFamily: 'Lisu Bosa, sans-serif', // Utilise la police Lisu Bosa
-        fontWeight: 200, // Poids ExtraLight (200),
-        textAlign: 'center', // Centre le texte horizontalement
+        fontFamily: 'Lisu Bosa, sans-serif',
+        fontWeight: 200,
+        textAlign: 'center',
     };
 
     return (
-        <Typography variant="h1" component="div" style={typographyStyles}>
-            {formattedTime}
-        </Typography>
+        <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+            <Typography variant="h1" component="div" style={typographyStyles}>
+                {formattedTime}
+            </Typography>
+            <TimeText currentTime={currentTime} />
+        </div>
     );
 }
 

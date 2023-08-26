@@ -42,7 +42,7 @@ const WeatherWidget = ({ latitude, longitude }) => {
         flexDirection: "column",
         alignItems: "flex-end",
         padding: "1rem",
-        boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.1)",
+        boxShadow: "0px 2px 2px rgba(0, 0, 0, 0.1)",
         color: "#fff",
       }}
     >
