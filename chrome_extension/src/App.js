@@ -3,10 +3,12 @@ import { Paper } from '@mui/material';
 import TimeDisplay from './composants/TimeDisplay';
 import WeatherWidget from './composants/WeatherWidget';
 import CryptoWidget from './composants/CryptoWidget';
+import SettingsButton from "./composants/SettingsButton";
+import SettingsWidget from "./composants/SettingsWidget";
+import { SettingsProvider } from "./composants/SettingsContext";
 
 function App() {
-    const [latitude, setLatitude] = useState(null);
-    const [longitude, setLongitude] = useState(null);
+    const [settingsOpen, setSettingsOpen] = useState(false);
     const [backgroundImage, setBackgroundImage] = useState(null);
 
     const fetchRandomImage = () => {
@@ -16,24 +18,17 @@ function App() {
         setBackgroundImage(imageUrl);
     };
 
-
     useEffect(() => {
         fetchRandomImage();
-
-        if ('geolocation' in navigator) {
-            navigator.geolocation.getCurrentPosition(
-                (position) => {
-                    setLatitude(position.coords.latitude);
-                    setLongitude(position.coords.longitude);
-                },
-                (error) => {
-                    console.error('Erreur de géolocalisation', error);
-                }
-            );
-        } else {
-            console.error("La géolocalisation n'est pas prise en charge par ce navigateur");
-        }
     }, []);
+
+    const handleSettingsOpen = () => {
+        setSettingsOpen(true);
+    };
+
+    const handleSettingsClose = () => {
+        setSettingsOpen(false);
+    };
 
     const paperStyles = {
         minHeight: '100vh',
@@ -54,11 +49,15 @@ function App() {
     };
 
     return (
-        <Paper style={paperStyles}>
-            <TimeDisplay />
-            <WeatherWidget latitude={latitude} longitude={longitude} />
-            <CryptoWidget />
-        </Paper>
+        <SettingsProvider>
+            <Paper style={paperStyles}>
+                <SettingsButton onClick={handleSettingsOpen} />
+                <SettingsWidget open={settingsOpen} onClose={handleSettingsClose} />
+                <TimeDisplay />
+                <WeatherWidget />
+                <CryptoWidget />
+            </Paper>
+        </SettingsProvider>
     );
 }
 

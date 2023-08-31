@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Typography from '@mui/material/Typography';
+import { useSettings } from "./SettingsContext";
 
 function TimeText({ currentTime }) {
     const [currentPeriod, setCurrentPeriod] = useState("");
+    const { settings } = useSettings();
 
     const subTextStyles = {
         fontSize: '3.5rem',
@@ -20,10 +22,9 @@ function TimeText({ currentTime }) {
             setCurrentPeriod('evening');
     }, [currentTime]);
 
-    console.log(currentTime);
     return (
         <Typography variant="body1" component="div" style={subTextStyles}>
-            Good {currentPeriod}, RedBoard.
+            Good {currentPeriod}, {settings.pseudonyme}
         </Typography>
     );
 }

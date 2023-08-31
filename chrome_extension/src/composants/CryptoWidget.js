@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Paper } from "@mui/material";
 import CryptoWidgetBox from './CryptoWidgetBox';
+import { useSettings } from "./SettingsContext";
 
 const CryptoWidget = () => {
     const [selectedCryptoCurrency, setSelectedCryptoCurrency] = useState([
@@ -10,6 +11,8 @@ const CryptoWidget = () => {
         "dogecoin",
     ]);
 
+    const { settings } = useSettings();
+    if (!settings.cryptoWidgetVisible) return;
     return (
         <Paper
             sx={{

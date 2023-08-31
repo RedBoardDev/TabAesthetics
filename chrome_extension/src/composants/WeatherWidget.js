@@ -3,21 +3,23 @@ import axios from "axios";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import WeatherIcon from "./WeatherIcon";
+import { useSettings } from "./SettingsContext";
 
-const WeatherWidget = ({ latitude, longitude }) => {
+const WeatherWidget = () => {
     const [temperature, setTemperature] = useState("");
     const [name, setName] = useState("");
     const [wicon, setWicon] = useState("");
+    const { settings } = useSettings();
 
     useEffect(() => {
         const getWeatherData = () => {
-            if (!latitude || !longitude) {
+            const weatherCity = settings.weatherCity;
+            if (!weatherCity) {
                 return;
             }
-
             axios({
                 method: "GET",
-                url: `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=e203317f0df5474c05874e35b030eda3`,
+                url: `https://api.openweathermap.org/data/2.5/weather?q=${weatherCity}&appid=e203317f0df5474c05874e35b030eda3`,
             })
                 .then((response) => {
                     setTemperature(Math.round(response.data.main.temp - 273.15));
@@ -30,8 +32,10 @@ const WeatherWidget = ({ latitude, longitude }) => {
         };
 
         getWeatherData();
-    }, [latitude, longitude]);
+    }, [settings.weatherCity]);
 
+
+    if (!settings.weatherWidgetVisible) return;
     return (
         <Box
             sx={{
