@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
+import { useChromeStorageLocal } from "use-chrome-storage";
 
 const SettingsContext = createContext();
 
@@ -14,9 +15,20 @@ export const SettingsProvider = ({ children }) => {
         pseudonyme: "there"
     });
 
+    const [value, setValue, isPersistent, error] = useChromeStorageLocal(
+        "settings",
+        settings
+    );
+
     const updateSettings = (updatedSettings) => {
-        setSettings({ ...settings, ...updatedSettings });
+        const newSettings = { ...settings, ...updatedSettings };
+        setSettings(newSettings);
+        setValue(newSettings);
     };
+
+    useEffect(() => {
+        setSettings(value);
+    }, [value]);
 
     return (
         <SettingsContext.Provider value={{ settings, updateSettings }}>

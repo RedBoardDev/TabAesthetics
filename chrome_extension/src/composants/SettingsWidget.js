@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Dialog, DialogTitle, Switch, FormControlLabel, TextField, Button, Box, Divider, List, ListItem, ListItemText, Typography } from "@mui/material";
 import { useSettings } from "./SettingsContext";
+import CloseIcon from '@mui/icons-material/Close';
 
 const SettingsWidget = ({ open, onClose }) => {
     const { settings, updateSettings } = useSettings();
@@ -59,7 +60,11 @@ const SettingsWidget = ({ open, onClose }) => {
                 }}
             >
                 <Box display="flex" flexDirection="column" height="100%">
-                    <DialogTitle>Customize Dashboard</DialogTitle>
+                    <DialogTitle>
+                        Customize Dashboard
+                        <CloseIcon style={{ cursor: "pointer", position: "absolute", top: 10, right: 10 }} onClick={onClose} />
+                    </DialogTitle>
+
                     <Box display="flex" flexGrow={1}>
                         <List
                             component="nav"
