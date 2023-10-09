@@ -6,6 +6,7 @@ import CryptoWidget from './composants/CryptoWidget';
 import SettingsButton from "./composants/SettingsButton";
 import SettingsWidget from "./composants/SettingsWidget";
 import { SettingsProvider } from "./composants/SettingsContext";
+import LastTabWidget from './composants/LastTabWidget';
 
 function App() {
     const [settingsOpen, setSettingsOpen] = useState(false);
@@ -56,6 +57,7 @@ function App() {
                 <TimeDisplay />
                 <WeatherWidget />
                 <CryptoWidget />
+                <LastTabWidget />
             </Paper>
         </SettingsProvider>
     );

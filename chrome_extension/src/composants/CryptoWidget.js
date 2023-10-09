@@ -31,7 +31,6 @@ const CryptoWidget = () => {
             ))}
         </Paper>
     );
-
 };
 
 export default CryptoWidget;
