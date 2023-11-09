@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Paper } from "@mui/material";
 import LastTabBox from './LastTabBox';
-import { useSettings } from "./SettingsContext";
+import { useSettings } from "./settings/SettingsContext";
 
 const LastTabWidget = () => {
     const { settings } = useSettings();

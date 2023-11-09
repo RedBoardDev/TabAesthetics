@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Typography from '@mui/material/Typography';
-import { useSettings } from "./SettingsContext";
+import { useSettings } from "./settings/SettingsContext";
 
 function TimeText({ currentTime }) {
     const [currentPeriod, setCurrentPeriod] = useState("");

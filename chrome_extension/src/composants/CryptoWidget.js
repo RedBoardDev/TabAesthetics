@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Paper } from "@mui/material";
 import CryptoWidgetBox from './CryptoWidgetBox';
-import { useSettings } from "./SettingsContext";
+import { useSettings } from "./settings/SettingsContext";
 
 const CryptoWidget = () => {
     const { settings } = useSettings();

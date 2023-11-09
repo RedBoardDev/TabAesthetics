@@ -3,7 +3,7 @@ import axios from "axios";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import WeatherIcon from "./WeatherIcon";
-import { useSettings } from "./SettingsContext";
+import { useSettings } from "./settings/SettingsContext";
 
 const WeatherWidget = () => {
     const [temperature, setTemperature] = useState("");
