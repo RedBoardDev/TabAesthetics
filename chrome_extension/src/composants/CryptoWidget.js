@@ -4,13 +4,6 @@ import CryptoWidgetBox from './CryptoWidgetBox';
 import { useSettings } from "./SettingsContext";
 
 const CryptoWidget = () => {
-    const [selectedCryptoCurrency, setSelectedCryptoCurrency] = useState([
-        "bitcoin",
-        "ethereum",
-        "pluton",
-        "dogecoin",
-    ]);
-
     const { settings } = useSettings();
     if (!settings.cryptoWidgetVisible) return;
     return (
@@ -26,7 +19,7 @@ const CryptoWidget = () => {
                 width: "300px",
             }}
         >
-            {selectedCryptoCurrency && selectedCryptoCurrency.map((coinName) => (
+            {(settings.cryptoCurrencyList) && (settings.cryptoCurrencyList).map((coinName) => (
                 <CryptoWidgetBox key={coinName} coinName={coinName} />
             ))}
         </Paper>

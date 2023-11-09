@@ -42,7 +42,8 @@ export const SettingsProvider = ({ children }) => {
         cryptoWidgetVisible: true,
         weatherWidgetVisible: true,
         weatherCity: "Paris",
-        pseudonyme: "there"
+        pseudonyme: "there",
+        cryptoCurrencyList: ["bitcoin", "ethereum"]
     });
 
     const updateSettings = (updatedSettings) => {
