@@ -7,6 +7,7 @@ import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 
 const CryptoWidgetBox = ({ coinName }) => {
     const [coinData, setCoinData] = useState(null);
+    const [coinLink] = useState(`https://www.coingecko.com/en/coins/${coinName}`);
 
     useEffect(() => {
         const getCoinsData = () => {
@@ -55,7 +56,9 @@ const CryptoWidgetBox = ({ coinName }) => {
                 </Box>
                 <Box sx={{ display: "flex", flexDirection: "column", marginLeft: "10px" }}>
                     <Typography variant="h6" fontWeight="bold">
-                        {coinData.name}
+                        <a href={coinLink} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: 'inherit' }}>
+                            {coinData.name}
+                        </a>
                     </Typography>
                     <Typography variant="body2" color="textSecondary">
                         {coinData.symbol}
