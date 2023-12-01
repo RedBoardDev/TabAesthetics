@@ -1,23 +1,77 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Paper } from "@mui/material";
 import LastTabBox from './LastTabBox';
 import { useSettings } from "./settings/SettingsContext";
 
+/* global chrome */
+
 const LastTabWidget = () => {
     const { settings } = useSettings();
-    const [lastTabs, setLastTabs] = useState([
-        "https://www.youtube.com/",
-        "https://chat.openai.com/",
-        "https://intra.epitech.eu/",
-        "https://github.com/",
-    ]);
-
+    const [lastTabsData, setLastTabsData] = useState([]);
 
     const flexContainerStyle = {
         display: "flex",
         flexDirection: "row",
         gap: "16px",
     };
+
+    useEffect(() => {
+        const fetchLastTabs = () => {
+            if (chrome && chrome.history) {
+                chrome.history.search({ text: '', maxResults: 5 }, (historyItems) => {
+                    console.log(historyItems);
+                    setLastTabsData(historyItems);
+                });
+            } else {
+                const simulatedHistoryItems = [
+                    {
+                        id: "32",
+                        lastVisitTime: 1701440614041.923,
+                        title: "Test 12345",
+                        typedCount: 2,
+                        url: "https://google.com/",
+                        visitCount: 30,
+                    },
+                    {
+                        id: "1277",
+                        lastVisitTime: 1701439098170.95,
+                        title: "Test 123456",
+                        typedCount: 1,
+                        url: "https://google.com/",
+                        visitCount: 1,
+                    },
+                    {
+                        id: "1",
+                        lastVisitTime: 1701439078258.47,
+                        title: "Test 1234567",
+                        typedCount: 4,
+                        url: "https://google.com/",
+                        visitCount: 9,
+                    },
+                    {
+                        id: "1276",
+                        lastVisitTime: 1701439066951.148,
+                        title: "Test 12345678",
+                        typedCount: 1,
+                        url: "https://google.com/",
+                        visitCount: 1,
+                    },
+                    {
+                        id: "1037",
+                        lastVisitTime: 1701432838664.5269,
+                        title: "Test 123456789",
+                        typedCount: 0,
+                        url: "https://google.com/",
+                        visitCount: 3,
+                    },
+                ];
+
+                setLastTabsData(simulatedHistoryItems);
+            }
+        };
+
+        fetchLastTabs();
+    }, []);
 
     return (
         <Paper
@@ -33,8 +87,8 @@ const LastTabWidget = () => {
             }}
         >
             <div style={flexContainerStyle}>
-                {lastTabs.map((coinName) => (
-                    <LastTabBox key={coinName} coinName={coinName} />
+                {lastTabsData.map((tab) => (
+                    <LastTabBox tabData={tab} />
                 ))}
             </div>
         </Paper>
