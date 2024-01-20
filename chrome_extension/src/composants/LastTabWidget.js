@@ -19,7 +19,6 @@ const LastTabWidget = () => {
         const fetchLastTabs = () => {
             if (chrome && chrome.history) {
                 chrome.history.search({ text: '', maxResults: 5 }, (historyItems) => {
-                    console.log(historyItems);
                     setLastTabsData(historyItems);
                 });
             } else {

@@ -43,22 +43,19 @@ const SettingsWidget = ({ open, onClose }) => {
 
                     <Box display="flex" flexGrow={1}>
                         {
-                            // SettingsMenu component
                             SettingsMenu({ currentTab, setCurrentTab })
                         }
 
                         <Divider />
                         <Box p={3} flexGrow={1} bgcolor="#fff">
                             {currentTab === 0 && (
-                                // weather component
                                 WeatherWidgetSettings()
                             )}
-                            {currentTab === 1 && (
+                            {/* {currentTab === 1 && (
                                 // crypto component
                                 CryptoWidgetSettings()
-                            )}
+                            )} */}
                             {currentTab === 2 && (
-                                // othet component
                                 OtherWidgetSettings()
                             )}
                         </Box>

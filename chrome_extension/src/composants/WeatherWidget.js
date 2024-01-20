@@ -19,7 +19,7 @@ const WeatherWidget = () => {
             }
             axios({
                 method: "GET",
-                url: `https://api.openweathermap.org/data/2.5/weather?q=${weatherCity}&appid=e203317f0df5474c05874e35b030eda3`,
+                url: `https://api.openweathermap.org/data/2.5/weather?q=${weatherCity}&appid=564a4f1d9c991501c51858ff68b002b1`,
             })
                 .then((response) => {
                     setTemperature(Math.round(response.data.main.temp - 273.15));

@@ -7,6 +7,7 @@ import SettingsButton from "./composants/SettingsButton";
 import SettingsWidget from "./composants/settings/SettingsWidget";
 import { SettingsProvider } from "./composants/settings/SettingsContext";
 import LastTabWidget from './composants/LastTabWidget';
+import QuoteWidget from './composants/QuoteWidget';
 
 function App() {
     const [settingsOpen, setSettingsOpen] = useState(false);
@@ -58,6 +59,7 @@ function App() {
                 <WeatherWidget />
                 <CryptoWidget />
                 <LastTabWidget />
+                <QuoteWidget />
             </Paper>
         </SettingsProvider>
     );

@@ -4,6 +4,7 @@ import { Box, Typography } from "@mui/material";
 const LastTabBox = ({ tabData }) => {
     const [favicon, setFavicon] = useState(null);
     const [title, setTitle] = useState(null);
+    const [url, setUrl] = useState(null);
 
     const getFavicon = (url) => {
         setFavicon(`https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${url}&size=64`);
@@ -12,11 +13,16 @@ const LastTabBox = ({ tabData }) => {
     useEffect(() => {
         const title = (tabData.title).length > (9 + 4) ? `${(tabData.title).substring(0, (6 + 4))}...` : (tabData.title);
         setTitle(title);
+        setUrl(tabData.url);
         getFavicon(tabData.url);
     }, [tabData]);
 
+    const openUrl = () => {
+        window.open(url, '_blank');
+    };
+
     return (
-        <Box>
+        <Box onClick={openUrl}>
             <Box
                 key={title}
                 sx={{
@@ -50,8 +56,6 @@ const LastTabBox = ({ tabData }) => {
                 {title}</Typography>
         </Box>
     );
-
-
 };
 
 export default LastTabBox;
